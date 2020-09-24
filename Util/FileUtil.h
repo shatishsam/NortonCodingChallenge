@@ -15,7 +15,7 @@
 struct File
 {
     FILE *file; //file
-    char fileName [40] ; //file name along with location
+    char fileName [50] ; //file name along with location
     char fileOpenType [5]; //file open type string (r, w, o).
     enum FILE_TYPE fileType;  //file type
     enum FILE_STATE fileState; //file state
