@@ -23,6 +23,8 @@ const unsigned int CACHE_SIZE = 1024; //size of the buffer used while reading in
 /*user input related constants*/
 const char EXIT_INPUT[] = "exit\n"; //compare this with user input to see if they want to exit.
 
+const char INPUT_ENTER_KEY = '\n';
+
 const enum USER_INPUT {EXIT, WRITE_FILE, READ_FILE, DELETE_FILE, FILE_AS_INPUT, FILE_AUTOMATION_TEST}; //user input to be compared in switch case
 
 /*Automation test realted constants*/

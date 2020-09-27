@@ -15,7 +15,7 @@
 struct File
 {
     FILE *file; //file
-    char fileName [50] ; //file name along with location
+    char fileName [100]; //file name along with location
     char fileOpenType [5]; //file open type string (r, w, o).
     enum FILE_TYPE fileType;  //file type
     enum FILE_STATE fileState; //file state
@@ -75,13 +75,6 @@ void setFileState(struct File *filePtr, enum FILE_STATE fileState)
 */
 bool initFile(struct File *filePtr, char fileName[], enum FILE_TYPE fileType)
 {
-    //check if file is already initialized
-    if(filePtr && getFileState(filePtr)==OPENED)
-    {
-        printf("file already initialized \n");
-        return true;
-    }
-
     //delete existing file if write type. so we can create a new file
     if(fileType==WRITE_TYPE || fileType==WRITE_BINARY_TYPE)
     {
@@ -157,7 +150,7 @@ void deleteIfFileExists(char *fileName)
 {
     if(checkIfFileExists(fileName))
     {
-        printf("file present, deleting the outfile\n");
+        printf("\nOUT_File present, deleting the outfile\n");
         remove(fileName);
     }    
 }
@@ -229,7 +222,6 @@ bool writeContentToFile(struct File *filePtr, char *CACHE)
             return false;
         }
     }     
-    printf("data succesfuly written to file\n");
     
     return true;
 }
@@ -311,9 +303,15 @@ bool copyContentsToFile(struct File *writeFilePtr, char* userFileName)
             }
         }
     }
+    else //read file failed
+    {
+        printf("problem with given file Exiting ... \n");
+        return false;
+    }
 
     //run sanity checker to make sure if file is written correctly.
-    printf("contents copied running sanity checker to ensure if file is copied correctly\n");
+    printf("contents copied sucessfuly \nrunning sanity checker to ensure if file is copied correctly\n");
+    sleep(2);
     bool fileCopyResult = isFileCopySuccess(readFilePtr->file, writeFilePtr->file);
     if(fileCopyResult)
     {
@@ -323,7 +321,6 @@ bool copyContentsToFile(struct File *writeFilePtr, char* userFileName)
     {
         printf("Sanity test failed\n");
     }
-
     //close and free read pointer, input buffer
     closeFile(readFilePtr);
     free(readFilePtr);
