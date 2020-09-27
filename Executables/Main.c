@@ -63,7 +63,7 @@ void putUserInputToFile()
           writeContentToFile(filePtr, CACHE);
           closeFile(filePtr);
 
-          printf("\ndata succesfuly written to file: %s\n", fileName);
+          printf("data succesfuly written to file: %s\n", fileName);
      }    
 }
 
