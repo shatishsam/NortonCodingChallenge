@@ -77,7 +77,7 @@ void parseFileAndStore(char *userFileName)
      {          
           if(copyContentsToFile(filePtr, userFileName)) //copy content and run sanity check
           {
-               printf("\nFile written succesfuly to %s \n", fileName);
+               printf("File written succesfuly to %s \n", fileName);
           }
           //close file and free char array
           closeFile(filePtr);
