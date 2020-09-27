@@ -30,26 +30,26 @@ const enum USER_INPUT {EXIT, WRITE_FILE, READ_FILE, DELETE_FILE, FILE_AS_INPUT, 
 /*Automation test realted constants*/
 const enum AUTOMATION_FILE_TYPE {TEXT, PDF, IMAGE, BINARY, ZIP, VIDEO}; //file types
 
-const char AUTOMATION_FILE_WORDDOCUMENT_SOURCE[] = "Automation\\TestCases\\Source\\sample.docx"; //text source
+const char AUTOMATION_FILE_WORDDOCUMENT_SOURCE[] = "TestCases\\Source\\sample.docx"; //text source
 
-const char AUTOMATION_FILE_WORDDOCUMENT_DESTINATION[] = "Automation\\TestCases\\Destination\\sample.docx"; //text destination
+const char AUTOMATION_FILE_WORDDOCUMENT_DESTINATION[] = "TestCases\\Destination\\sample.docx"; //text destination
 
-const char AUTOMATION_FILE_PDF_SOURCE[] = "Automation\\TestCases\\Source\\sample.pdf"; //pdf source
+const char AUTOMATION_FILE_PDF_SOURCE[] = "TestCases\\Source\\sample.pdf"; //pdf source
 
-const char AUTOMATION_FILE_PDF_DESTINATION[] = "Automation\\TestCases\\Destination\\sample.pdf"; //pdf destination
+const char AUTOMATION_FILE_PDF_DESTINATION[] = "TestCases\\Destination\\sample.pdf"; //pdf destination
 
-const char AUTOMATION_FILE_IMAGE_SOURCE[] = "Automation\\TestCases\\Source\\sample.png"; //image source
+const char AUTOMATION_FILE_IMAGE_SOURCE[] = "TestCases\\Source\\sample.png"; //image source
 
-const char AUTOMATION_FILE_IMAGE_DESTINATION[] = "Automation\\TestCases\\Destination\\sample.png"; //image destination
+const char AUTOMATION_FILE_IMAGE_DESTINATION[] = "TestCases\\Destination\\sample.png"; //image destination
 
-const char AUTOMATION_FILE_BINARY_SOURCE[] = "Automation\\TestCases\\Source\\sample.bin"; //binary source
+const char AUTOMATION_FILE_BINARY_SOURCE[] = "TestCases\\Source\\sample.bin"; //binary source
 
-const char AUTOMATION_FILE_BINARY_DESTINATION[] = "Automation\\TestCases\\Destination\\sample.bin"; //binary destination
+const char AUTOMATION_FILE_BINARY_DESTINATION[] = "TestCases\\Destination\\sample.bin"; //binary destination
 
-const char AUTOMATION_FILE_ZIP_SOURCE[] = "Automation\\TestCases\\Source\\sample.zip"; //zip source
+const char AUTOMATION_FILE_ZIP_SOURCE[] = "TestCases\\Source\\sample.zip"; //zip source
 
-const char AUTOMATION_FILE_ZIP_DESTINATION[] = "Automation\\TestCases\\Destination\\sample.zip"; //zip destination
+const char AUTOMATION_FILE_ZIP_DESTINATION[] = "TestCases\\Destination\\sample.zip"; //zip destination
 
-const char AUTOMATION_FILE_VIDEO_SOURCE[] = "Automation\\TestCases\\Source\\sample.mp4"; //video source
+const char AUTOMATION_FILE_VIDEO_SOURCE[] = "TestCases\\Source\\sample.mp4"; //video source
 
-const char AUTOMATION_FILE_VIDEO_DESTINATION[] = "Automation\\TestCases\\Destination\\sample.mp4"; //video destination
+const char AUTOMATION_FILE_VIDEO_DESTINATION[] = "TestCases\\Destination\\sample.mp4"; //video destination

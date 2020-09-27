@@ -79,21 +79,27 @@ void runFileCopyAutomation()
 
     printf("\nTesting Word Document file type containing Foreign language \n");
     runAutomationForFile(AUTOMATION_FILE_WORDDOCUMENT_SOURCE, TEXT);
+    sleep(2);
 
     printf("\nTesting PDF file type \n");
     runAutomationForFile(AUTOMATION_FILE_PDF_SOURCE, PDF);
+    sleep(2);
 
     printf("\nTesting IMAGE file type \n");
     runAutomationForFile(AUTOMATION_FILE_IMAGE_SOURCE, IMAGE);
+    sleep(2);
 
     printf("\nTesting BINARY file type \n");
     runAutomationForFile(AUTOMATION_FILE_BINARY_SOURCE, BINARY);
+    sleep(2);
 
     printf("\nTesting ZIP file type \n");
     runAutomationForFile(AUTOMATION_FILE_ZIP_SOURCE, ZIP);
+    sleep(2);
 
     printf("\nTesting VIDEO file type \n");
     runAutomationForFile(AUTOMATION_FILE_VIDEO_SOURCE, VIDEO);
+    sleep(2);
 
     free(writePtr);
 }
