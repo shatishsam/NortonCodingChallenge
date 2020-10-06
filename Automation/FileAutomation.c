@@ -11,9 +11,15 @@
 
 int main(int argc, char* argv[])
 {
+    //run file automation tests
     runFileCopyAutomation();
-
-    printf("\n File Automation test completed\n");
+    printf("\nFile Automation test completed\n");
     sleep(2);
+
+    //run CMD commands to test the PIPE automations
+    runPipeAutomation();
+    printf("\nPIPE Automation test completed\n");
+    sleep(2);
+
     return 0;
 }

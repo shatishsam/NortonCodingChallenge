@@ -291,16 +291,19 @@ bool copyContentsToFile(struct File *writeFilePtr, char* userFileName)
     //file struct pointer to read data from user file
     struct File *readFilePtr = malloc(sizeof(struct File)); //init the pointer to struct 
     wchar_t* inputBuffer = malloc(CACHE_SIZE * sizeof(wchar_t)); //read in wchar_t so we can read binary strings as well.
+    size_t bytesRead, bytesWritten; //to check the bytes of data read and written
 
     if(initFile(readFilePtr, userFileName, READ_BINARY_TYPE)) //init read file
-    {
-        while(fread(inputBuffer, 1, CACHE_SIZE, readFilePtr->file)) //read from file
+    {   
+        while(bytesRead=fread(inputBuffer, 1, CACHE_SIZE, readFilePtr->file)) //read from file
         {
-            if(fwrite(inputBuffer, 1, CACHE_SIZE, writeFilePtr->file)<0) //write to file
+            bytesWritten = fwrite(inputBuffer, 1, bytesRead, writeFilePtr->file);//write to file
+            if(bytesWritten==FILE_WRITE_FAILED)
             {
                 printf("\n File write failed check the file directory and available memory space \n");
                 return false;
             }
+            fflush(writeFilePtr->file); //flush contents
         }
     }
     else //read file failed
@@ -326,6 +329,46 @@ bool copyContentsToFile(struct File *writeFilePtr, char* userFileName)
     free(readFilePtr);
     free(inputBuffer);
     return fileCopyResult;
+}
+
+bool writePipedContentToFile(struct File *writeFilePtr)
+{
+    //file not initilized
+    if(!writeFilePtr || !writeFilePtr->file || getFileState(writeFilePtr)==UNOPENED)
+    {
+        printf("File pointer not initiliazied cannot write exiting\n");
+        return false;
+    }
+
+    //file not opened in write type
+    if(getFileType(writeFilePtr)!=WRITE_BINARY_TYPE)
+    {
+        printf("File is not initialized with write type cannot write to this file\n");
+        return false;  
+    }
+
+    //write the piped content to file and return
+    char *CACHE = malloc(sizeof(char) * CACHE_SIZE); //init the cache (1 KB cache size. can be changes in Constants.h)
+    size_t bytesRead, bytesWritten, totalBytes=0; //keep track of the bytes read from user.
+
+    while( bytesRead = fread(CACHE, 1, CACHE_SIZE, stdin))
+    {   
+        totalBytes+=bytesRead;
+
+        bytesWritten = fwrite(CACHE, 1, bytesRead, writeFilePtr->file);//write to file
+        if(bytesWritten==FILE_WRITE_FAILED)
+        {
+            printf("\n File write failed check the file directory and available memory space \n");
+            return false;
+        }
+
+        fflush(writeFilePtr->file); //flush contents
+    }
+
+    printf("Piped data write success Bytes written=%d\n", totalBytes);
+    free(CACHE);
+    sleep(3);
+    return true;
 }
 
 /* (TESTER DEBUG FUNCTION) this function prints the summary of the file ie(name, open type)

@@ -63,7 +63,7 @@ void putUserInputToFile()
           writeContentToFile(filePtr, CACHE);
           closeFile(filePtr);
 
-          printf("data succesfuly written to file: %s Exiting....\n", fileName);
+          printf("\ndata succesfuly written to file: %s\n", fileName);
      }    
 }
 
@@ -77,7 +77,7 @@ void parseFileAndStore(char *userFileName)
      {          
           if(copyContentsToFile(filePtr, userFileName)) //copy content and run sanity check
           {
-               printf("File written succesfuly to %s Exiting.... \n", fileName);
+               printf("File written succesfuly to %s \n", fileName);
           }
           //close file and free char array
           closeFile(filePtr);
@@ -109,12 +109,12 @@ int main(int argc, char* argv[])
      if(checkIfFileExists(argv[1])) //file exists parse and store file
      {
           parseFileAndStore(argv[1]);
-          sleep(5);
+          sleep(2);
      }
      else
      {
           putUserInputToFile(); //get user input and store to file
-          sleep(5);
+          sleep(2);
      }
 
      destructVariables(); //destruct variables

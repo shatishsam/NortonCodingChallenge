@@ -17,6 +17,8 @@ const char FILE_BINARY_READ_TYPE[] = "rb"; //read binary type. reads binary form
 
 const char FILE_BINARY_WRITE_TYPE[] = "wb"; //writes binary data to the file.
 
+const int FILE_WRITE_FAILED=0; //used to check if file write is success
+
 /*Buffer related constants*/
 const unsigned int CACHE_SIZE = 1024; //size of the buffer used while reading input from user.
 
@@ -53,3 +55,7 @@ const char AUTOMATION_FILE_ZIP_DESTINATION[] = "TestCases\\Destination\\sample.z
 const char AUTOMATION_FILE_VIDEO_SOURCE[] = "TestCases\\Source\\sample.mp4"; //video source
 
 const char AUTOMATION_FILE_VIDEO_DESTINATION[] = "TestCases\\Destination\\sample.mp4"; //video destination
+
+const char AUTOMATION_PIPE_7ZIP_COMMAND[] = "TestCases\\Util\\7z e TestCases\\Source\\sample.zip -so| ..\\Application.exe"; //provide binary data to application using 7zip and PIPE
+
+const char AUTOMATION_PIPE_IMAGE_BINARY_COMMAND[]= "TYPE TestCases\\Source\\sample.png | ..\\Application.exe"; //provide image binary content as input using PIPE

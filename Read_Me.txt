@@ -23,16 +23,3 @@ Features-
 2.) Sanity checker added so when file is written from user. we can make sure the contentes are copied correctly
 4.) File automation tester, This feature takes different file types(Text, PDF, image, video, zip, binary) writes it to the destination and does sanity testing to check if the files are copied correctly
 
-Changes Made on 28-09-2020
-
-Features-
-1.) Drag abd drop files to console to write them to out file.
-2.) Fixed a bug (when folder is given as an input exit).
-3.) File automation tests decoupled and moved to automation folder.
-4.) File automation UI improved. more info added.
-
-summary-
-* Input is first received in application.exe file and the arguments is passed to Executables/main.exe. 
-* There we will check if file has been given or normal input. and proceed from there on
-* After file copyig is done sanity checking is done to ensure file copy is success
-* File automation test moved to automation folder. More clean info is added.

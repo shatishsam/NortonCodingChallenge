@@ -103,3 +103,27 @@ void runFileCopyAutomation()
 
     free(writePtr);
 }
+
+/*this function runs different commands and pipes various inputs to the application.
+* arguments- none
+* return- none
+*/
+void runPipeAutomation()
+{
+    //unzip compressed file with 7zip and provide it as an input to application
+    printf("\nPiping binary input from compressed file using 7zip to Application\n");
+    system(AUTOMATION_PIPE_7ZIP_COMMAND);
+    sleep(2);
+
+    //provide binary content of an image file to application
+    printf("\nPiping Image file as binary content to the application\n");
+    system(AUTOMATION_PIPE_IMAGE_BINARY_COMMAND);
+    printf("\nRunning file sanity test\n");
+    FILE *source = fopen("TestCases\\Source\\sample.png", "rb");
+    FILE *destination = fopen("OUT_FILE", "rb");
+    isFileCopySuccess(source, destination);
+    sleep(2);
+
+    fclose(source);
+    fclose(destination);
+}

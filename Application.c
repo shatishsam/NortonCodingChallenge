@@ -4,8 +4,10 @@
 #include <unistd.h>
 #include <windows.h>
 #include <sys/types.h>
+#include <io.h>
+#include <fcntl.h>
 
-#include "Constants/Constants.h"
+#include "Util/FileUtil.h"
 #include "SanityChecker/FileSanityChecker.h"
 
 /*This file reads the input from user and executes another program. input can be file or string
@@ -32,29 +34,58 @@ DWORD WINAPI getUserInput(LPVOID Param)
     }
 }
 
+/*Checks if the STDIN is a terminal or PIPED*/
+bool isStdinTerminal()
+{
+    return isatty(fileno(stdin));
+}
+
 /*main function. we wait for the user to give a file or anyother input and proceed from there on.*/
 int main() 
 {
-     /* create the thread and wait for user input*/
-    DWORD ThreadId;
-    HANDLE ThreadHandle = CreateThread(NULL, 0, getUserInput, NULL, 0, &ThreadId);
-
-    if (ThreadHandle != NULL)
+    //stdin is terminal so no need to set STDIN as binary. get users input and proceed
+    if(isStdinTerminal())
     {
-        while(true)
-        {
-            if(isInputReceived) //wait for child thread to receive input
-            {
-                sleep(1); //input received from user in child thread. 
-                CloseHandle(ThreadHandle); //join the thread
-                break;
-            }
-        }
+        /* create the thread and wait for user input*/
+        DWORD ThreadId;
+        HANDLE ThreadHandle = CreateThread(NULL, 0, getUserInput, NULL, 0, &ThreadId);
 
-        /*spawn another process and send the user input as arguments*/
-        //spawnl(P_NOWAIT, "Executables/main.exe", "Executables/main.exe", buffer, NULL);
-        execl("Executables/main.exe", "main", buffer, NULL);
+        if (ThreadHandle != NULL)
+        {
+            while(true)
+            {
+                if(isInputReceived) //wait for child thread to receive input
+                {
+                    sleep(1); //input received from user in child thread. 
+                    CloseHandle(ThreadHandle); //join the thread
+                    break;
+                }
+            }
+
+            /*spawn another process and send the user input as arguments*/
+            spawnl(P_NOWAIT, "Executables/main.exe", "Executables/main.exe", buffer, NULL);
+        }
     }
 
+    //stdin is piped content read and persist content from STDIN
+    else
+    {
+        //set STDIN in binary mode as we are receiving input from PIPE
+        freopen(NULL, "rb", stdin);
+        _setmode(_fileno(stdin), _O_BINARY);
+
+        //persist data from STDIN
+        char fileName[]= "OUT_FILE";
+        struct File *writeFilePtr = malloc(sizeof(struct File)); //init the pointer to struct 
+
+        if(initFile(writeFilePtr, fileName, WRITE_BINARY_TYPE))
+        {
+            bool result = writePipedContentToFile(writeFilePtr);
+            if(result) printf("Piped Data written successfuly exiting\n");
+            else printf("Exception while writing piped data exitiing \n");
+        }
+
+        sleep(3);
+    }
    return 0;
 }
