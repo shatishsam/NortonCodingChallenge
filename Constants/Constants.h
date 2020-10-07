@@ -59,3 +59,5 @@ const char AUTOMATION_FILE_VIDEO_DESTINATION[] = "TestCases\\Destination\\sample
 const char AUTOMATION_PIPE_7ZIP_COMMAND[] = "TestCases\\Util\\7z e TestCases\\Source\\sample.zip -so| ..\\Application.exe"; //provide binary data to application using 7zip and PIPE
 
 const char AUTOMATION_PIPE_IMAGE_BINARY_COMMAND[]= "TYPE TestCases\\Source\\sample.png | ..\\Application.exe"; //provide image binary content as input using PIPE
+
+const char AUTOMATION_PIPE_TEXT_COMMAND[] = "echo Hello World | ..\\Application.exe"; //provide text as input to application using PIPE

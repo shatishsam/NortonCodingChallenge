@@ -124,6 +124,11 @@ void runPipeAutomation()
     isFileCopySuccess(source, destination);
     sleep(2);
 
+    //unzip compressed file with 7zip and provide it as an input to application
+    printf("\nPiping text input to application using echo command\n");
+    system(AUTOMATION_PIPE_TEXT_COMMAND);
+    sleep(2);
+
     fclose(source);
     fclose(destination);
 }

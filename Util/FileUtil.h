@@ -331,6 +331,10 @@ bool copyContentsToFile(struct File *writeFilePtr, char* userFileName)
     return fileCopyResult;
 }
 
+/* This function writes the piped content to the application to a file
+* arguments- initialised write pointer
+* return- boolean weather operation is success
+*/
 bool writePipedContentToFile(struct File *writeFilePtr)
 {
     //file not initilized

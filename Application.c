@@ -85,6 +85,7 @@ int main()
             else printf("Exception while writing piped data exitiing \n");
         }
 
+        closeFile(writeFilePtr);
         sleep(3);
     }
    return 0;
