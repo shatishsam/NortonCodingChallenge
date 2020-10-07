@@ -63,7 +63,7 @@ int main()
             }
 
             /*spawn another process and send the user input as arguments*/
-            spawnl(P_NOWAIT, "Executables/main.exe", "Executables/main.exe", buffer, NULL);
+            execl("Executables/main.exe", "main", buffer, NULL);
         }
     }
 
